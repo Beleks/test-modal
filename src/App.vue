@@ -57,7 +57,8 @@ const modalContent = () => {
   })
 
   return h('div', { class: 'modal-content' }, [
-    //
+    // Чтобы была возможность удобно стилизовать номер заказа, выделив его жирным шрифтом, title решил рендерить через h(), а не прокидывать через props.
+    // Была мысль сделать рендер контента и добавить туда слоты и потом закинуть title туда, получается title -> Modal.vue -> там уже в template v-slote:title, но не получилось такое реализовать.
     h('div', { class: 'main-title' }, ['Отказаться от выполнения заказа', h('div', { class: 'order-number' }, `№${currentOrder.value.orderNumber}`)]),
     h('div', { class: 'sub-title' }, 'Расскажите, почему отказались от выполнения заказа?'),
     h('div', { class: 'checkbox-list' }, checkboxes),
@@ -80,7 +81,7 @@ function showModal(order) {
 }
 
 function closeModal() {
-  // modalTitle.value = ''
+  modalTitle.value = ''
   checkedItems.value.clear()
   modalContent.value = ''
   isModalOpen.value = false

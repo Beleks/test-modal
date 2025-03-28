@@ -1,29 +1,67 @@
-# test-modal
+#  Компонент Modal.vue
 
-This template should help get you started developing with Vue 3 in Vite.
+Компонент модального окна открывающийся в центре страницы.
+При нажатии на область вне модального окна или на кнопку закрытия, модальное окно закрывается.
 
-## Recommended IDE Setup
+Использование
+```Vue
+<template>
+  <div class="main-page">
+    Какой-то контент...
+  </div>
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+  <Modal 
+    :isOpen="isModalOpen"
+    :title="modalTitle"
+    :onClose="closeModal"
+    :content="modalContent"
+  />
+</template>
+```
 
-## Customize configuration
+Входные параметры
+```JS
+isOpen: {
+  // Определяет открыто ли окно
+  type: Boolean,
+  required: true,
+}
 
-See [Vite Configuration Reference](https://vite.dev/config/).
+onClose: {
+  // Функция, вызываемая для закрытия модального окна
+  type: Function,
+  required: true
+}
 
-## Project Setup
+title: {
+  // Заголовок модального окна
+  type: String,
+  required: true
+}
 
-```sh
+content: {
+  // Содержимое модального окна
+  type: [VNode, String], 
+  required: true
+}
+```
+
+Комментарии к заданию:
+* Реализован сброс данных которые используются в модальном окне
+* Вывод в консоль id причин отказа при нажатии на кнопку "Отправить"
+* Если ни одна причина не выбрана то при клике на "отправить" ничего не произойдёт
+
+
+## Установка и запуск
+
+```
 npm install
 ```
 
-### Compile and Hot-Reload for Development
-
-```sh
+```
 npm run dev
 ```
 
-### Compile and Minify for Production
-
-```sh
+```
 npm run build
 ```
